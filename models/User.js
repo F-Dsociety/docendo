@@ -10,6 +10,7 @@ const userSchema = new Schema({
   phone: String,
   socialNetwork: String,
   
+
   keywords: [String],
 },
 {

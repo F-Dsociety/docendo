@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const {Schema,model} = mongoose;
 
 const teacherSchema = new Schema({
@@ -19,6 +20,7 @@ const teacherSchema = new Schema({
 });
 
 const Teacher = model('Teacher', teacherSchema);
+
 module.exports = Teacher;
 
 //https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs/mongoose
