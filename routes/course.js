@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
   })
 })
 
-// CREATE A POST
+// CREATE A COURSE
 router.post('/', (req, res) => {
   
   const {title, description} = req.body;  //GET THE DATA FROM THE BODY
@@ -44,6 +44,29 @@ router.post('/', (req, res) => {
 });
 
 // EDIT A COURSE
+router.put('/:id', (req, res, next) => {
+  const { title, description } = req.body;
+  Course.findByIdAndUpdate(
+    req.params.id,
+    { title, description },
+    { new: true }             //return the updated document // without, send the old version before changes
+  )
+    .then(course => {
+      console.log(course);
+      res.status(200).json(course);
+    })
+    .catch(err => { err })
+});
 
+
+router.delete('/:id', (req, res, next) => {
+  Course.findByIdAndDelete(req.params.id)
+    .then(course => {
+      res.status(200).json({ message: 'ok' })
+    })
+    .catch(err => {
+      res.json(err);
+    })
+});
 
 module.exports = router;
