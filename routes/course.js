@@ -18,7 +18,11 @@ router.get('/', (req, res) => {
 
 // FIND A COURSE
 router.get('/:id', (req, res) => {
-  Course
+  Course.findById(req.params.id)
+  .then( course => {
+    if(!course) res.status(404).json(course)
+    else        res.status(200).json(course)
+  })
 })
 
 // CREATE A POST
@@ -38,5 +42,8 @@ router.post('/', (req, res) => {
   })
 
 });
+
+// EDIT A COURSE
+
 
 module.exports = router;
