@@ -1,28 +1,26 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+const {Schema,model} = mongoose;
 
 const teacherSchema = new Schema({
-  username:   String,
-  password:   String,
-  licence:    String,   // STUDENT/TEACHER
-  firstName:  String,
-  lastName:   String,
-
-  contactDetails:{
-    email:  String,
-    phone:  String,
-    socialNetwork:  String,
-  },
+  username: String,
+  password: String,
+  firstname:String,
+  lastname: String,
+  email: String,
+  phone: String,
+  socialNetwork: String,
 
   keywords: [String],
 
-  post: [{ 
-    type: Schema.Type.ObjectId, 
-    ref: Post
-  }]
+  // post: [{ 
+  //   type: Schema.Type.ObjectId, 
+  //   ref: 'Post'
+  // }]
 });
 
-const Teacher = mongoose.model('Teacher', teacherSchema);
+const Teacher = model('Teacher', teacherSchema);
+
 module.exports = Teacher;
 
 //https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs/mongoose

@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Teacher = require('../models/Teacher');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 router.post('/signup', (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, password, firstname, lastname, email, phone, socialNetwork, license } = req.body;
 
   if (password.length < 8) {
     return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
@@ -14,7 +15,13 @@ router.post('/signup', (req, res, next) => {
     return res.status(400).json({ message: 'Your username cannot be empty' });
   }
   // check if username exists in database -> show message
-  User.findOne({ username: username })
+  let accountMongo = null
+  if (license == 'Teach') {
+    accountMongo = Teacher
+  } else if (license == 'Learn') {
+    accountMongo = User
+  }
+  accountMongo.findOne({ username: username })
     .then(found => {
       if (found !== null) {
         return res.status(400).json({ message: 'Your username is already taken' });
@@ -23,9 +30,10 @@ router.post('/signup', (req, res, next) => {
         const salt = bcrypt.genSaltSync();
         const hash = bcrypt.hashSync(password, salt);
 
-        User.create({
-          username: username,
-          password: hash
+        accountMongo.create({
+          username,
+          password: hash,
+          firstname, lastname, email, phone, socialNetwork
         })
           .then(dbUser => {
             // login with passport:
