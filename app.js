@@ -55,4 +55,8 @@ const index = require('./routes/index');
 app.use('/', index);
 
 
+const course = require('./routes/course');
+app.use('/api/course', course);
+
+
 module.exports = app;
