@@ -11,7 +11,7 @@ const path = require('path');
 const cors = require('cors');
 
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/docendo", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect("mongodb://localhost/docendo", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

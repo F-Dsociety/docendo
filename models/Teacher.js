@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 const { Schema, model } = mongoose;
 
+=======
+
+const {Schema,model} = mongoose;
+>>>>>>> 4ba30e974bc02fe5322af5f5c1b9fd8365afea84
 
 const teacherSchema = new Schema({
   username: String,
@@ -35,6 +40,7 @@ const teacherSchema = new Schema({
   });
 
 const Teacher = model('Teacher', teacherSchema);
+
 module.exports = Teacher;
 
 //https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs/mongoose

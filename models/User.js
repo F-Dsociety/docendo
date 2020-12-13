@@ -14,6 +14,10 @@ const userSchema = new Schema({
   }
   
 
+<<<<<<< HEAD
+=======
+  keywords: [String],
+>>>>>>> 4ba30e974bc02fe5322af5f5c1b9fd8365afea84
 },
 {
   timestamps: {
