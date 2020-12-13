@@ -4,13 +4,16 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  firstname:String,
-  lastname: String,
-  email: String,
-  phone: String,
-  socialNetwork: String,
+  learn:{
+      type: Schema.ObjectId,
+      ref: 'Students'
+  },
+  teach: {
+      type: Schema.ObjectId,
+      ref: 'Teacher'
+  }
   
-  keywords: [String],
+
 },
 {
   timestamps: {

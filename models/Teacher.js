@@ -1,22 +1,38 @@
 const mongoose = require('mongoose');
-const {Schema,model} = mongoose;
+const { Schema, model } = mongoose;
+
 
 const teacherSchema = new Schema({
   username: String,
   password: String,
-  firstname:String,
+  firstname: String,
   lastname: String,
   email: String,
   phone: String,
   socialNetwork: String,
-
-  keywords: [String],
-
-  // post: [{ 
-  //   type: Schema.Type.ObjectId, 
-  //   ref: 'Post'
-  // }]
-});
+  role: {
+    type:String,
+    default:'teach'
+  },
+  studentList: [{
+    type: Schema.ObjectId,
+    ref: 'User'
+  }],
+  lessons: [{
+    type: Schema.ObjectId,
+    ref: 'Lessons'
+  }],
+  responds: [{
+    type: Schema.ObjectId,
+    ref: 'Interests'
+  }]
+},
+  {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+  });
 
 const Teacher = model('Teacher', teacherSchema);
 module.exports = Teacher;

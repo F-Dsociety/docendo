@@ -10,6 +10,9 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   User.findById(id)
+  .populate('teach')
+  .populate('learn')
+  .exec()
     .then(dbUser => {
       done(null, dbUser);
     })
@@ -21,7 +24,11 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new LocalStrategy((username, password, done) => {
     User.findOne({ username: username })
+    .populate('teach')
+    .populate('learn')
+    .exec()
       .then(found => {
+
         if (found === null) {
           done(null, false, { message: 'Wrong Credentials' })
         } else if (!bcrypt.compareSync(password, found.password)) {

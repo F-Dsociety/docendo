@@ -27,7 +27,7 @@ export default function Signup({ setUser, history }) {
         } else {
           // put the user in the state of App.js
           setUser(data);
-          history.push('/complete-profile');
+          history.push('/dashboard');
         }
       })
   }
@@ -117,7 +117,7 @@ export default function Signup({ setUser, history }) {
             </Form.Group>
             <Form.Group>
               <Form.Label >What you want to do: </Form.Label>
-              {['Teach', 'Learn'].map(item => <Form.Check inline name='license' value={item} onChange={handleChange} label={item} type='radio' />)}
+              {['teach', 'learn'].map(item => <Form.Check inline name='license' value={item} onChange={handleChange} label={item} type='radio' />)}
 
             </Form.Group>
             </>
