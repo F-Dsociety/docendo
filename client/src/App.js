@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import Projects from './components/Projects';
+import Dashboard from './components/Dashboard';
 import ProjectDetails from './components/ProjectDetails';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -26,11 +26,11 @@ class App extends React.Component {
         <Navbar user={this.state.user} setUser={this.setUser} />
         <Route
           exact
-          path='/projects'
+          path='/dashboard'
           // component={Projects}
           render={props => {
             if (this.state.user) {
-              return <Projects {...props} />
+              return <Dashboard {...props} user={this.state.user} />
             }
             else {
               return <Redirect to='/' />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function ProjectList(props) {
+export default function List(props) {
   return (
     <div>
       {props.projects.map(project => {

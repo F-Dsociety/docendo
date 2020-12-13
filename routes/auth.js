@@ -16,12 +16,12 @@ router.post('/signup', (req, res, next) => {
   }
   // check if username exists in database -> show message
   let accountMongo = null
-  if (license == 'Teach') {
+  if (license == 'teach') {
     accountMongo = Teacher
-  } else if (license == 'Learn') {
+  } else if (license == 'learn') {
     accountMongo = User
   }
-  accountMongo.findOne({ username: username })
+  User.findOne({ username: username })
     .then(found => {
       if (found !== null) {
         return res.status(400).json({ message: 'Your username is already taken' });
@@ -29,21 +29,28 @@ router.post('/signup', (req, res, next) => {
         // hash the password, create the user and send the user to the client
         const salt = bcrypt.genSaltSync();
         const hash = bcrypt.hashSync(password, salt);
-
+        
         accountMongo.create({
-          username,
-          password: hash,
           firstname, lastname, email, phone, socialNetwork
         })
           .then(dbUser => {
-            // login with passport:
-            req.login(dbUser, err => {
-              if (err) {
-                return res.status(500).json({ message: 'Error while attempting to login' })
-              }
-              // we don't redirect to an html page anymore, we just send the user obj to the client
-              return res.status(200).json(dbUser);
-            });
+            User.create({
+              username,
+              password: hash,
+              [license]: dbUser._id
+              
+            })
+            .then(user=>{
+                // login with passport:
+              req.login(dbUser, err => {
+                if (err) {
+                  return res.status(500).json({ message: 'Error while attempting to login' })
+                }
+                // we don't redirect to an html page anymore, we just send the user obj to the client
+                return res.status(200).json({...dbUser,...user});
+              });
+            })
+            
           })
           .catch(err => {
             res.json(err);
@@ -68,6 +75,13 @@ router.post('/login', (req, res) => {
     })
   })(req, res)
 });
+// router.post('/test',(req,res)=>{
+//   let {username} = req.body
+//   User.findOne({ username: username }).populate('teach').exec()
+//   .then(found => {
+//     res.send(found)
+//   })
+// })
 
 router.delete('/logout', (req, res) => {
   req.logout();
