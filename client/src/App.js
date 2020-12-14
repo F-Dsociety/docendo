@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import Dashboard from './components/Dashboard';
 import ProjectDetails from './components/ProjectDetails';
+import List from './components/List';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
@@ -39,8 +40,8 @@ class App extends React.Component {
         />
         <Route
           exact
-          path='/projects/:id'
-          render={props => <ProjectDetails user={this.state.user} {...props} />}
+          path='/projects/' // cuando llame al path /projects/ hace render de List
+          render={props => <List />}
         />
         <Route
           exact

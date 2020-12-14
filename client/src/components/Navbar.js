@@ -17,6 +17,11 @@ export default function Navbar(props) {
       <Nav.Brand>
         <Link to='/'>Home</Link>
       </Nav.Brand>
+
+      <Nav.Brand>
+          <Link to='/projects'>Projects List</Link>
+      </Nav.Brand>
+
       {props.user ? (
         <>
           <Nav.Brand>
@@ -31,6 +36,7 @@ export default function Navbar(props) {
             <Nav.Brand>
               <Link to='/signup'>Signup</Link>
             </Nav.Brand>
+
             <Nav.Brand>
               <Link to='/login'>Login</Link>
             </Nav.Brand>
