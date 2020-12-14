@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
-<<<<<<< HEAD
 const { Schema, model } = mongoose;
 
-=======
-
-const {Schema,model} = mongoose;
->>>>>>> 4ba30e974bc02fe5322af5f5c1b9fd8365afea84
 
 const teacherSchema = new Schema({
   username: String,
@@ -19,17 +14,17 @@ const teacherSchema = new Schema({
     type:String,
     default:'teach'
   },
-  studentList: [{
+  studentsList: [{
     type: Schema.ObjectId,
     ref: 'User'
   }],
   lessons: [{
     type: Schema.ObjectId,
-    ref: 'Lessons'
+    ref: 'Lesson'
   }],
-  responds: [{
+  responces: [{
     type: Schema.ObjectId,
-    ref: 'Interests'
+    ref: 'Interest'
   }]
 },
   {

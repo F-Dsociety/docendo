@@ -8,7 +8,7 @@ const lessonSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Teacher'
   },
-  matherials: [Buffer],
+  materials: [Buffer],
    //chat or webinar schedule
 },
   {
@@ -20,5 +20,5 @@ const lessonSchema = new Schema({
   }
 );
 
-const Lessons = mongoose.model('Lessons', lessonSchema);
-module.exports = Lessons;
+const Lesson = mongoose.model('Lesson', lessonSchema);
+module.exports = Lesson;

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const studentsSchema = new Schema({
+const studentSchema = new Schema({
   username: String,
   password: String,
   firstname:String,
@@ -15,15 +15,15 @@ const studentsSchema = new Schema({
   },
   teachersList: [{ 
     type: Schema.ObjectId, 
-    ref: 'Teachers'
+    ref: 'Teacher'
   }],
   lessons: [{ 
     type: Schema.ObjectId, 
-    ref: 'Lessons'
+    ref: 'Lesson'
   }],
   interests: [{ 
     type: Schema.ObjectId, 
-    ref: 'Interests'
+    ref: 'Interest'
   }]
 },
 {
@@ -34,7 +34,7 @@ const studentsSchema = new Schema({
 
 });
 
-const Students = mongoose.model('Students', userSchema);
-module.exports = Students;
+const Student = mongoose.model('Student', userSchema);
+module.exports = Student;
 
 //https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs/mongoose

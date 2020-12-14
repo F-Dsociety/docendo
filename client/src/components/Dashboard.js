@@ -42,9 +42,9 @@ export default function Dashboard({user}){
 
               <Card.Body>
                 {
-                  user.teach.studentList.length
+                  user.teach.studentsList.length
                   ?
-                  user.teach.studentList.map(student=><div></div>)
+                  user.teach.studentsList.map(student=><div></div>)
                   :
                   <div>no students yet</div>
                 
@@ -75,17 +75,17 @@ export default function Dashboard({user}){
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                Responds list
+                Responces list
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="2">
               <Card.Body>
               {
-                  user.teach.responds.length
+                  user.teach.responces.length
                   ?
-                  user.teach.responds.map(respond=><div></div>)
+                  user.teach.responces.map(responce=><div></div>)
                   :
-                  <div>no responds yet</div>
+                  <div>no responces yet</div>
                 
                 }
               </Card.Body>
