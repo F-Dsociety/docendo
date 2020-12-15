@@ -1,14 +1,14 @@
 const express = require('express');
 const router  = express.Router();
-const Course =  require('../models/Course')
+const Course =  require('../models/Lesson')
 
 
-// RETRIEVE ALL THE COURSES
-router.get('/', (req, res) => {
+// RETRIEVE ALL
+router.get('/list', (req, res) => {
   
-  Course.find()     //  find() TO GET ALL THE OBJECTS
-  .then(courses => {
-    res.status(200).json(courses);  //STATUS(200) = OK
+  Lesson.find()     //  find() TO GET ALL THE OBJECTS
+  .then(lesson => {
+    res.status(200).json(lesson);  //STATUS(200) = OK
   })
   .catch( err => {
     res.json(err);
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 // FIND A COURSE
 router.get('/:id', (req, res) => {
-  Course.findById(req.params.id)
+  Lesson.findById(req.params.id)
   .then( course => {
     if(!course) res.status(404).json(course)
     else        res.status(200).json(course)

@@ -9,7 +9,7 @@ const passport = require('passport');
 router.post('/signup', (req, res, next) => {
   const { username, password, firstname, lastname, email, phone, socialNetwork, license } = req.body;
 
-  if (password.length < 8) {
+  if (password.length < 1) {
     return res.status(400).json({ message: 'Your password must be 8 chars minimum' });
   }
   if (username === '') {
