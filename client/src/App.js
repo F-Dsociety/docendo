@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/dashboard';
 import ProjectDetails from './components/ProjectDetails';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import { Route, Redirect } from 'react-router-dom';
+import AddLicense from './components/AddLicense'
 
 class App extends React.Component {
 
@@ -51,6 +52,11 @@ class App extends React.Component {
           exact
           path='/login'
           render={props => <Login setUser={this.setUser} {...props} />}
+        />
+        <Route
+          exact
+          path='/addlicense/:license'
+          render={props => <AddLicense user={this.state.user} setUser={this.setUser} {...props} />}
         />
       </div>
     );

@@ -33,4 +33,15 @@ const logout = () => {
     });
 }
 
-export { signup, login, logout }; 
+const addLicense = (data) => {
+  return axios
+    .post('/api/auth/addlicense', data)
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      return err.response.data;
+    });
+}
+
+export { signup, login, logout,addLicense }; 
