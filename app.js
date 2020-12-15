@@ -11,7 +11,7 @@ const path = require('path');
 const cors = require('cors');
 
 mongoose
-  .connect(/*process.env.MONGODB_URI ||*/"mongodb://localhost/docendo", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI ||"mongodb://localhost/docendo", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -68,6 +68,8 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const auth = require('./routes/auth');
 app.use('/api/auth', auth);
+const dashboard = require('./routes/dashboard');
+app.use('/api/dashboard', dashboard);
 
 // const course = require('./routes/course');
 // app.use('/api/course', course);
