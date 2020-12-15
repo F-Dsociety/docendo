@@ -34,7 +34,7 @@ const studentSchema = new Schema({
 
 });
 
-const Student = mongoose.model('Student', userSchema);
+const Student = mongoose.model('Student', studentSchema);
 module.exports = Student;
 
 //https://developer.mozilla.org/es/docs/Learn/Server-side/Express_Nodejs/mongoose

@@ -1,0 +1,4 @@
+//- send proper user after sign up, now it sends just result of succefull create
+
+- create all add lesson/request/teacher/respond routes
+- add request and window for adding learn/teach account if user do not have
