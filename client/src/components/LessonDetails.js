@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
-import EditProject from './EditProject';
+import LessonEdit from './LessonEdit';
+import LessonSchedule from './LessonSchedule';
 
-export default class ProjectDetails extends Component {
+export default class LessonDetails extends Component {
 
   state = {
     project: null,
     editForm: false,
     error: null,
     title: '',
-    description: ''
+    description: '',
+    owner: '',
+    schedule:''
   }
 
   getData = () => {
@@ -22,7 +25,8 @@ export default class ProjectDetails extends Component {
         this.setState({
           project: response.data,
           title: response.data.title,
-          description: response.data.description
+          description: response.data.description,
+          owner: response.data.owner
         })
       })
       .catch(err => {
@@ -51,6 +55,11 @@ export default class ProjectDetails extends Component {
   toggleEditForm = () => {
     this.setState((prevState) => ({
       editForm: !prevState.editForm
+    }))
+  }
+  toggleSchedule = () => {
+    this.setState((prevState) => ({
+      schedule: !prevState.schedule
     }))
   }
 
@@ -82,29 +91,51 @@ export default class ProjectDetails extends Component {
   }
 
   render() {
-    if (this.state.error) return <h1>{this.state.error}</h1>
-    if (!this.state.project) return <h1>Loading...</h1>
-    let allowedToDelete = false;
+    if (this.state.error)     return <h1>{this.state.error}</h1>
+    if (!this.state.project)  return <h1>Loading...</h1>
+
+    let allowedToModify = true;
+
     const user = this.props.user;
     const owner = this.state.project.owner;
-    if (user && user._id === owner) allowedToDelete = true;
+
+    if (user && user._id === owner) allowedToModify = true;
+    
     return (
       <div>
         <h1>{this.state.project.title}</h1>
+        <h4>teacher profile link</h4>
         <p>{this.state.project.description}</p>
 
-        {allowedToDelete && (
-          <Button variant='danger' onClick={this.deleteProject}>Delete Project</Button>
+        {allowedToModify && (
+          <div>
+          <Button variant='danger' onClick={this.deleteProject}>Delete</Button>
+          <Button onClick={this.toggleEditForm}>Edit</Button>
+            {this.state.editForm && (
+            <LessonEdit
+              {...this.state}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          )}
+          
+          </div>
         )}
 
-        <Button onClick={this.toggleEditForm}>Show Edit Form</Button>
-        {this.state.editForm && (
-          <EditProject
-            {...this.state}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-          />
+        {allowedToModify && (
+          <div>
+          <Button onClick={this.toggleSchedule}>Schedule it</Button>
+            {this.state.editForm && (
+            <LessonSchedule
+              {...this.state}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          )}
+          
+          </div>
         )}
+
       </div>
     )
   }

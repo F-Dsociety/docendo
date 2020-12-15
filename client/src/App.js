@@ -2,10 +2,11 @@ import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import Dashboard from './components/dashboard';
-import ProjectDetails from './components/ProjectDetails';
+import LessonDetails from './components/LessonDetails';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import List from './components/List';
 import { Route, Redirect } from 'react-router-dom';
 import AddLicense from './components/AddLicense'
 
@@ -40,8 +41,13 @@ class App extends React.Component {
         />
         <Route
           exact
-          path='/projects/:id'
-          render={props => <ProjectDetails user={this.state.user} {...props} />}
+          path='/current-courses/' // cuando llame al path /projects/ hace render de List
+          render={props => <List setUser={this.setUser} {...props}/>}
+        />
+        <Route
+          exact
+          path='/lesson/details/:id' // cuando llame al path /projects/ hace render de List
+          render={props => <LessonDetails setUser={this.setUser} {...props}/>}
         />
         <Route
           exact

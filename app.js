@@ -63,16 +63,16 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-// const projects = require('./routes/projects');
-// app.use('/api/projects', projects);
+const projects = require('./routes/projects');
+app.use('/api/projects', projects);
 
 const auth = require('./routes/auth');
 app.use('/api/auth', auth);
 const dashboard = require('./routes/dashboard');
 app.use('/api/dashboard', dashboard);
 
-// const course = require('./routes/course');
-// app.use('/api/course', course);
+const course = require('./routes/lesson');
+app.use('/api/course', course);
 
 
 module.exports = app;
