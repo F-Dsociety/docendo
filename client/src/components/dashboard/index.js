@@ -35,7 +35,7 @@ export default function Dashboard({user}){
       <div className='projects-container'>
         <Modal show={show} onHide={()=>setShow(false)}>
           <Modal.Header closeButton>
-            <Modal.Title>What would you like to do today</Modal.Title>
+            <Modal.Title>What you want to do today</Modal.Title>
           </Modal.Header>
           <Modal.Footer className='d-flex justify-content-around'>
             <Button 

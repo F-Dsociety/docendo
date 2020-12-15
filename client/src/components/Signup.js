@@ -23,7 +23,7 @@ export default function Signup({ setUser, history }) {
       .then(data => {
         if (data.message) {
           setMessage(data.message)
-          setCredentials({})
+          // setCredentials({})
         } else {
           // put the user in the state of App.js
           setUser(data);
@@ -116,7 +116,7 @@ export default function Signup({ setUser, history }) {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label >What would you like to do? </Form.Label>
+              <Form.Label >What you want to do: </Form.Label>
               {['teach', 'learn'].map(item => <Form.Check inline name='license' value={item} onChange={handleChange} label={item} type='radio' />)}
 
             </Form.Group>
