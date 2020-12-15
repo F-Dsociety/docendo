@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import Dashboard from './components/dashboard';
 import LessonDetails from './components/LessonDetails';
+import LessonAdd from './components/LessonAdd';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
@@ -25,7 +26,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" >
+
         <Navbar user={this.state.user} setUser={this.setUser} />
+
         <Route
           exact
           path='/dashboard'
@@ -48,6 +51,11 @@ class App extends React.Component {
           exact
           path='/lesson/details/:id' // cuando llame al path /projects/ hace render de List
           render={props => <LessonDetails setUser={this.setUser} {...props}/>}
+        />
+        <Route
+          exact
+          path='/lesson/add-lesson' // cuando llame al path /projects/ hace render de List
+          render={props => <LessonAdd setUser={this.setUser} {...props}/>}
         />
         <Route
           exact
