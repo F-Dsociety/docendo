@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import Dashboard from './components/Dashboard';
-import ProjectDetails from './components/ProjectDetails';
+import LessonDetails from './components/LessonDetails';
 import List from './components/List';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -40,8 +40,13 @@ class App extends React.Component {
         />
         <Route
           exact
-          path='/projects/' // cuando llame al path /projects/ hace render de List
-          render={props => <List />}
+          path='/current-courses/' // cuando llame al path /projects/ hace render de List
+          render={props => <List setUser={this.setUser} {...props}/>}
+        />
+        <Route
+          exact
+          path='/lesson/details/:id' // cuando llame al path /projects/ hace render de List
+          render={props => <LessonDetails setUser={this.setUser} {...props}/>}
         />
         <Route
           exact
