@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import Dashboard from './components/dashboard';
@@ -45,7 +44,7 @@ class App extends React.Component {
         <Route
           exact
           path='/current-courses/' // cuando llame al path /projects/ hace render de List
-          render={props => <List setUser={this.setUser} {...props}/>}
+          render={props => <List setUser={this.setUser}{...props}/>}
         />
         <Route
           exact

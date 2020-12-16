@@ -22,7 +22,7 @@ export default class LessonAdd extends Component {
     event.preventDefault();
     // console.log(this.state);
     console.log(this.state);
-    axios.post('/api/lesson', {
+    axios.post('/api/lesson/', {
       title:        this.state.title,
       description:  this.state.description,
       owner:        this.state._id

@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import {Modal, Button} from 'react-bootstrap'
-import axios from 'axios';
-// import List from './List';
-// import AddProject from './AddProject';
-import { useRouteMatch, Redirect} from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 import Student from './Student';
 import Teacher from './Teacher';
 
