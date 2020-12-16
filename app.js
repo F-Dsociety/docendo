@@ -69,8 +69,8 @@ app.use('/api/projects', projects);
 const auth = require('./routes/auth');
 app.use('/api/auth', auth);
 
-const course = require('./routes/lesson');
-app.use('/api/course', course);
+const lesson = require('./routes/lesson');
+app.use('/api/lesson', lesson);
 
 
 module.exports = app;

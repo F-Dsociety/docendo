@@ -26,8 +26,9 @@ export default class LessonAdd extends Component {
       description:  this.state.description,
       owner:        this.state._id
     })
-      .then(() => {
+      .then(res => {
         // set the form to it's initial state (empty input fields)
+
         this.setState({
           title: '',
           description: '',
