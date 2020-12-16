@@ -16,7 +16,7 @@ const teacherSchema = new Schema({
   },
   studentsList: [{
     type: Schema.ObjectId,
-    ref: 'User'
+    ref: 'Student'
   }],
   lessons: [{
     type: Schema.ObjectId,
