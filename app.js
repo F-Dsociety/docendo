@@ -57,6 +57,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//
+app.use(express.static(path.join(__dirname, "/client/build")));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
@@ -73,6 +75,12 @@ app.use('/api/dashboard', dashboard);
 
 const course = require('./routes/lesson');
 app.use('/api/course', course);
+
+
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 
 module.exports = app;
