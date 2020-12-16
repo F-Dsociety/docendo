@@ -76,7 +76,7 @@ export default function Signup({ setUser, history }) {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label htmlFor='firstname'>Last Name: </Form.Label>
+              <Form.Label htmlFor='lastname'>Last Name: </Form.Label>
               <Form.Control
                 type='text'
                 name='lastname'

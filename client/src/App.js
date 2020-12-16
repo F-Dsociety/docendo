@@ -1,14 +1,14 @@
-import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import Dashboard from './components/dashboard';
-import LessonDetails from './components/LessonDetails';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
-import List from './components/List';
 import { Route, Redirect } from 'react-router-dom';
-import AddLicense from './components/AddLicense'
+import Navbar         from './components/Navbar';
+import Signup         from './components/Signup';
+import Login          from './components/Login';
+import Dashboard      from './components/dashboard';
+import LessonDetails  from './components/LessonDetails';
+import LessonAdd      from './components/LessonAdd';
+import List           from './components/List';
+import AddLicense     from './components/AddLicense'
 
 class App extends React.Component {
 
@@ -25,7 +25,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" >
+
         <Navbar user={this.state.user} setUser={this.setUser} />
+
         <Route
           exact
           path='/dashboard'
@@ -42,12 +44,17 @@ class App extends React.Component {
         <Route
           exact
           path='/current-courses/' // cuando llame al path /projects/ hace render de List
-          render={props => <List setUser={this.setUser} {...props}/>}
+          render={props => <List {...props} user={this.state.user}/>}
         />
         <Route
           exact
           path='/lesson/details/:id' // cuando llame al path /projects/ hace render de List
           render={props => <LessonDetails setUser={this.setUser} {...props}/>}
+        />
+        <Route
+          exact
+          path='/lesson/add-lesson' // cuando llame al path /projects/ hace render de List
+          render={props => <LessonAdd setUser={this.setUser} {...props}/>}
         />
         <Route
           exact

@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import {Modal, Button} from 'react-bootstrap'
-import axios from 'axios';
-// import List from './List';
-// import AddProject from './AddProject';
-import { useRouteMatch, Redirect} from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 import Student from './Student';
 import Teacher from './Teacher';
 
@@ -11,31 +8,15 @@ export default function Dashboard({user}){
   const [show,setShow] = useState(true)
   const [license, setLicense] = useState(null)
 
-  // state = {
-  //   projects: []
-  // }
-  // getData = () => {
-  //   // get the current list of projects from the server
-  //   axios.get('/api/projects')
-  //     .then(response => {
-  //       console.log(response);
-  //       // put them into the state
-  //       this.setState({
-  //         projects: response.data
-  //       })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-
-  // componentDidMount() {
-  //   this.getData();
-  // }
+  console.log(user)
 
     return (
       <div className='projects-container'>
         <Modal show={show} onHide={()=>setShow(false)}>
           <Modal.Header closeButton>
-            <Modal.Title>What you want to do today</Modal.Title>
+
+            <Modal.Title>Hi {user.firstname} What would you like to do today</Modal.Title>
+
           </Modal.Header>
           <Modal.Footer className='d-flex justify-content-around'>
             <Button 
@@ -47,6 +28,7 @@ export default function Dashboard({user}){
             >
               Teach
             </Button>
+
             <Button 
               variant="success" 
               onClick={()=>{
@@ -62,9 +44,6 @@ export default function Dashboard({user}){
           license
         &&
           <>
-            {/* hi {user[license].firstname} */}
-            {/* <AddProject getData={this.getData} /> */}
-            {/* <List list={this.state.projects} /> */}
             {
               license==='teach'
               ?

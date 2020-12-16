@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import axios from 'axios';
 
-export default class AddProject extends Component {
+export default class LessonAdd extends Component {
 
   state = {
     title: '',
-    description: ''
+    description: '',
+    owner:''
   }
 
   handleChange = event => {
@@ -19,17 +20,18 @@ export default class AddProject extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // console.log(this.state);
     console.log(this.state);
-    axios.post('/api/projects', {
-      title: this.state.title,
-      description: this.state.description
+    axios.post('/api/lesson/', {
+      title:        this.state.title,
+      description:  this.state.description,
+      owner:        this.state._id
     })
       .then(() => {
         // set the form to it's initial state (empty input fields)
         this.setState({
           title: '',
-          description: ''
+          description: '',
+          owner: ''
         })
         // update the parent components state (in Projects) by calling getData()
         this.props.getData();
@@ -60,7 +62,7 @@ export default class AddProject extends Component {
             onChange={this.handleChange}
           />
         </Form.Group>
-        <Button type='submit'>Add a Project</Button>
+        <Button type='submit'>Add your Lesson</Button>
       </Form>
     )
   }

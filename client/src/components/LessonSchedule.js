@@ -14,7 +14,7 @@ export default class LessonSchedule extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const id = this.props.match.params.id;
-    axios.put(`/api/projects/${id}`, {
+    axios.put(`/api/lesson/${id}`, {
       title: this.state.title,
       description: this.state.description
     })
