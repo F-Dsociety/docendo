@@ -2,19 +2,33 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Accordion, Card, Button, Container } from 'react-bootstrap'
 import Teacher from './items/Teacher'
+import Interest from './items/Interest'
 import InterestInput from './InterestInput'
 
 export default function Student({ data }) {
   let [teachers, setTeachers] = useState([])
+  let [interests, setInterests] = useState([])
+
+  function getInterests(){
+    axios
+      .post('/api/dashboard/interests_list', {id:data._id})
+      .then(response => {
+        return setInterests(response.data||[])
+      })
+      .catch(err => {
+        return err.response;
+      });
+  }
   useEffect(() => {
     axios
       .post('/api/dashboard/teachers_list', {})
       .then(response => {
-        return setTeachers(response.data)
+        return setTeachers(response.data||[])
       })
       .catch(err => {
         return err.response.data;
       });
+    getInterests()
   }, [])
   return (
     <Accordion defaultActiveKey="0">
@@ -70,13 +84,13 @@ export default function Student({ data }) {
         <Accordion.Collapse eventKey="2">
           <Card.Body>
             {
-              data.interests.length
+              interests.length
                 ?
-                data.interests.map(interest => <div></div>)
+                interests.map(interest => <Interest interest={interest} />)
                 :
                 <div>no interests yet</div>
             }
-            <InterestInput />
+            <InterestInput getInterests={getInterests} owner={data._id}/>
           </Card.Body>
         </Accordion.Collapse>
       </Card>

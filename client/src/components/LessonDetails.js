@@ -10,9 +10,6 @@ export default class LessonDetails extends Component {
     project: null,
     editForm: false,
     error: null,
-    title: '',
-    description: '',
-    owner: '',
     schedule:''
   }
 
@@ -23,10 +20,7 @@ export default class LessonDetails extends Component {
       .then(response => {
         console.log(response);
         this.setState({
-          project: response.data,
-          title: response.data.title,
-          description: response.data.description,
-          owner: response.data.owner
+          project: response.data
         })
       })
       .catch(err => {
@@ -45,10 +39,10 @@ export default class LessonDetails extends Component {
   deleteProject = () => {
     // delete this project from the database
     const id = this.props.match.params.id;
-    axios.delete(`/api/projects/${id}`)
+    axios.delete(`/api/lesson/${id}`)
       .then(() => {
         // this is how you do a redirect with react router dom
-        this.props.history.push('/projects');
+        this.props.history.push('/current-lessons/');
       })
   }
 
@@ -97,17 +91,18 @@ export default class LessonDetails extends Component {
     let allowedToModify = false;
 
     const user = this.props.user;
-    const owner = this.state.project.owner;
+    const {title, description, owner} = this.state.project;
 
-    if (user && user._id === owner) allowedToModify = true;
+    if (user && user.teach._id === owner._id) allowedToModify = true;
+    console.log(user,owner)
     
     return (
       <div className= "lesson-details-container">
           
         <div>
-          <h2>{this.state.project.title}</h2>
-          <h5>teacherName profile link</h5>
-          <p>{this.state.project.description}</p>
+          <h2>{title}</h2>
+          <h5>{owner.firstname} profile link</h5>
+          <p>{description}</p>
         </div>
         {allowedToModify && (
           <div>

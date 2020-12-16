@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 
-export default function InterestInput({owner,getInterests}) {
+export default function LessonInput({getLessons,owner}) {
   let [show, setShow] = useState(false)
   let [input, setInput] = useState({})
 
@@ -16,10 +16,10 @@ export default function InterestInput({owner,getInterests}) {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-    .put('/api/dashboard/interests', {...input,owner})
+    .post('/api/lesson/', {...input,owner})
     .then(response => {
       setShow(false)
-      getInterests()
+      getLessons()
 
     })
     .catch(err => {
@@ -31,7 +31,7 @@ export default function InterestInput({owner,getInterests}) {
   return (
     <>
       <Button onClick={() => setShow(true)}>
-        request a lesson
+        create a lesson
       </Button>
 
       <Modal
@@ -40,7 +40,7 @@ export default function InterestInput({owner,getInterests}) {
       >
         <Modal.Header closeButton>
           <Modal.Title >
-            Create request for a lesson
+            Create  a lesson
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
