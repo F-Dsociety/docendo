@@ -40,17 +40,19 @@ export default class List extends Component {
     return (
       <div>
         <h1>Current Courses</h1>
-        {this.state.lessons.map(element => {
-          return (
-            <div key={element._id}>
-              <h3>
-                <Link to={`/lesson/details/${element._id}`}>{element.title}</Link>
-              </h3>
-              <p>{element.description}</p>
-              {/* <Button onClick={`/lesson/details/${project._id}`}>More Info</Button> */}
-            </div>
-          )
-        })}
+        <div className="current-courses-list-container">
+          {this.state.lessons.map(element => {
+            return (
+              <div key={element._id} className="course-container">
+                <h3>
+                  <Link to={`/lesson/details/${element._id}`}>{element.title}</Link>
+                </h3>
+                <p>{element.description}</p>
+                {/* <Button onClick={`/lesson/details/${project._id}`}>More Info</Button> */}
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  justify-content: center;
 }
 
 .App-header {
@@ -26,15 +27,24 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-.projects-container {
+h1{
+  margin: 30px;
+}
+.current-courses-list-container {
+  border: 1px solid rgb(0, 255, 0);
+  margin:auto;
+  width: 70vw;
   display: flex;
-  padding: 5vh 5vw;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.projects-container > * {
-  flex: 1;
+.course-container {
+  border: 1px solid black;
+  width: 200px;
+  height: 180px;
+  margin:20px;
 }
-
 
 .teacher-index-container{
   display: flex;
