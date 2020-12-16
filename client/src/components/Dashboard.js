@@ -28,7 +28,7 @@ export default function Dashboard({user}){
 
     return (
       <div className='projects-container'>
-        hi {user.teach.firstname}
+        {/* hi {user.teach.firstname} */}
         {/* <AddProject getData={this.getData} /> */}
         {/* <List list={this.state.projects} /> */}
         <Accordion defaultActiveKey="0">
