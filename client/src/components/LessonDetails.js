@@ -19,7 +19,7 @@ export default class LessonDetails extends Component {
   getData = () => {
     const id = this.props.match.params.id;
     // get the project that was clicked from the server
-    axios.get(`/api/projects/${id}`)
+    axios.get(`/api/lesson/${id}`)
       .then(response => {
         console.log(response);
         this.setState({
@@ -73,7 +73,7 @@ export default class LessonDetails extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const id = this.props.match.params.id;
-    axios.put(`/api/projects/${id}`, {
+    axios.put(`/api/lesson/${id}`, {
       title: this.state.title,
       description: this.state.description
     })
@@ -94,7 +94,7 @@ export default class LessonDetails extends Component {
     if (this.state.error)     return <h1>{this.state.error}</h1>
     if (!this.state.project)  return <h1>Loading...</h1>
 
-    let allowedToModify = true;
+    let allowedToModify = false;
 
     const user = this.props.user;
     const owner = this.state.project.owner;
@@ -102,11 +102,13 @@ export default class LessonDetails extends Component {
     if (user && user._id === owner) allowedToModify = true;
     
     return (
-      <div>
-        <h1>{this.state.project.title}</h1>
-        <h4>teacher profile link</h4>
-        <p>{this.state.project.description}</p>
-
+      <div className= "lesson-details-container">
+          
+        <div>
+          <h2>{this.state.project.title}</h2>
+          <h5>teacherName profile link</h5>
+          <p>{this.state.project.description}</p>
+        </div>
         {allowedToModify && (
           <div>
           <Button variant='danger' onClick={this.deleteProject}>Delete</Button>
@@ -122,14 +124,14 @@ export default class LessonDetails extends Component {
           </div>
         )}
 
-        {allowedToModify && (
+        {!allowedToModify && (
           <div>
           <Button onClick={this.toggleSchedule}>Schedule it</Button>
             {this.state.editForm && (
             <LessonSchedule
-              {...this.state}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
+               {...this.state}
+              // handleChange={this.handleChange}
+              // handleSubmit={this.handleSubmit}
             />
           )}
           

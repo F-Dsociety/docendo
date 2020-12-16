@@ -20,7 +20,6 @@ export default class LessonAdd extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // console.log(this.state);
     console.log(this.state);
     axios.post('/api/lesson/', {
       title:        this.state.title,

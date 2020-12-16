@@ -1,6 +1,11 @@
+body{
+  font-family: Consolas;
+}
+
 .App {
   text-align: center;
   justify-content: center;
+  align-items: center;
 }
 
 .App-header {
@@ -30,23 +35,34 @@
 h1{
   margin: 30px;
 }
-.current-courses-list-container {
+.current-courses-container {
   border: 1px solid rgb(0, 255, 0);
-  margin:auto;
-  width: 70vw;
   display: flex;
+  margin:50px auto 100px;
+  width: 70vw;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
 .course-container {
   border: 1px solid black;
-  width: 200px;
-  height: 180px;
+  width: 250px;
+  height: 240px;
   margin:20px;
+  padding: 1em;
 }
 
 .teacher-index-container{
   display: flex;
   justify-content: space-around;
+}
+
+.lesson-details-container{
+  border: 1px solid rgb(0, 255, 0);
+  display: flex;
+  width: 60vw;
+  height: 60vh;
+  align-items: center;
+  justify-content: space-around;
+  margin:200px auto 100px;
 }
