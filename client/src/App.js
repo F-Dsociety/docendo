@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
-import Dashboard from './components/dashboard';
-import LessonDetails from './components/LessonDetails';
-import LessonAdd from './components/LessonAdd';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
-import List from './components/List';
 import { Route, Redirect } from 'react-router-dom';
-import AddLicense from './components/AddLicense'
+import Navbar         from './components/Navbar';
+import Signup         from './components/Signup';
+import Login          from './components/Login';
+import Dashboard      from './components/dashboard';
+import LessonDetails  from './components/LessonDetails';
+import LessonAdd      from './components/LessonAdd';
+import List           from './components/List';
+import AddLicense     from './components/AddLicense'
 
 class App extends React.Component {
 
@@ -44,7 +44,7 @@ class App extends React.Component {
         <Route
           exact
           path='/current-courses/' // cuando llame al path /projects/ hace render de List
-          render={props => <List setUser={this.setUser}{...props}/>}
+          render={props => <List {...props} user={this.state.user}/>}
         />
         <Route
           exact

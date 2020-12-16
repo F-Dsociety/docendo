@@ -13,11 +13,11 @@ export default class List extends Component {
   getData = () => {
     //const id = this.props.match.params.id;
 
-    axios.get(`/api/lessons/list`)
+    axios.get(`/api/lesson`)
       .then(response => {
         console.log(response);
         this.setState({
-          lessons: response.lesson
+          lessons: response.data
         })
       })
       .catch(err => {
@@ -35,7 +35,7 @@ export default class List extends Component {
 
   render(){
     
-    // console.log(this.props);
+    console.log(this.props);
 
     return (
       <div>
