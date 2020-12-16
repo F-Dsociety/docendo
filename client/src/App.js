@@ -43,17 +43,17 @@ class App extends React.Component {
         />
         <Route
           exact
-          path='/current-courses/' // cuando llame al path /projects/ hace render de List
+          path='/current-courses/' 
           render={props => <List {...props} user={this.state.user}/>}
         />
         <Route
           exact
-          path='/lesson/details/:id' // cuando llame al path /projects/ hace render de List
+          path='/lesson/details/:id' 
           render={props => <LessonDetails setUser={this.setUser} {...props}/>}
         />
         <Route
           exact
-          path='/lesson/add-lesson' // cuando llame al path /projects/ hace render de List
+          path='/lesson/add-lesson' // cuando llame al path hace render
           render={props => <LessonAdd setUser={this.setUser} {...props}/>}
         />
         <Route

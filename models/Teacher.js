@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
-
 const teacherSchema = new Schema({
   username: String,
   password: String,

@@ -1,14 +1,14 @@
 const express = require('express');
 const router  = express.Router();
-const Course =  require('../models/Lesson')
+const Lesson =  require('../models/Lesson')
 
 
 // RETRIEVE ALL
-router.get('/list', (req, res) => {
+router.get('/', (req, res) => {
   
   Lesson.find()     //  find() TO GET ALL THE OBJECTS
-  .then(lesson => {
-    res.status(200).json(lesson);  //STATUS(200) = OK
+  .then(lessons => {
+    res.status(200).json(lessons);  //STATUS(200) = OK
   })
   .catch( err => {
     res.json(err);
@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
   
   const {title, description} = req.body;  //GET THE DATA FROM THE BODY
  
-  Course.create({       //CREATE THE OBJECT
+  Lesson.create({       //CREATE THE OBJECT
     title,
     description
   })
@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
 // EDIT A COURSE
 router.put('/:id', (req, res, next) => {
   const { title, description } = req.body;
-  Course.findByIdAndUpdate(
+  Lesson.findByIdAndUpdate(
     req.params.id,
     { title, description },
     { new: true }             //return the updated document // without, send the old version before changes
@@ -60,7 +60,7 @@ router.put('/:id', (req, res, next) => {
 
 
 router.delete('/:id', (req, res, next) => {
-  Course.findByIdAndDelete(req.params.id)
+  Lesson.findByIdAndDelete(req.params.id)
     .then(course => {
       res.status(200).json({ message: 'ok' })
     })
