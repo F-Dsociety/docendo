@@ -5,9 +5,8 @@ import {useParams} from 'react-router-dom'
 
 export default function AddLicense({ setUser, history, user }) {
   const {license} = useParams()
-   
-   console.log(user);
-     
+
+
   let { username,password,[license==='teach'?'learn':'teach']:{firstname,lastname,email,phone,socialNetwork}} = user
 
   const [credentials, setCredentials] = useState({username,password,firstname,lastname,email,phone,socialNetwork,license})
