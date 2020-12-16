@@ -73,8 +73,8 @@ app.use('/api/auth', auth);
 const dashboard = require('./routes/dashboard');
 app.use('/api/dashboard', dashboard);
 
-const course = require('./routes/lesson');
-app.use('/api/course', course);
+const lesson = require('./routes/lesson');
+app.use('/api/lesson', lesson);
 
 
 app.use((req, res) => {
