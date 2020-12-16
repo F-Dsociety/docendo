@@ -39,7 +39,7 @@ export default class List extends Component {
 
     return (
       <div>
-        <h1>Current Courses</h1>
+        <h1>Current Lessons</h1>
         <div className="current-courses-container">
           {this.state.lessons.map(element => {
             return (

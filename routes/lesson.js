@@ -1,4 +1,5 @@
 const express = require('express');
+const { populate } = require('../models/Lesson');
 const router  = express.Router();
 const Lesson =  require('../models/Lesson')
 
@@ -15,10 +16,23 @@ router.get('/', (req, res) => {
   })
 
 });
+router.get('/byTeacher_id/:id', (req, res) => {
+  
+  Lesson.find({owner:req.params.id})     //  find() TO GET ALL THE OBJECTS
+  .then(lessons => {
+    res.status(200).json(lessons);  //STATUS(200) = OK
+  })
+  .catch( err => {
+    res.json(err);
+  })
+
+});
 
 // FIND A COURSE
 router.get('/:id', (req, res) => {
   Lesson.findById(req.params.id)
+  .populate('owner')
+  .exec()
   .then( course => {
     if(!course) res.status(404).json(course)
     else        res.status(200).json(course)
@@ -28,8 +42,7 @@ router.get('/:id', (req, res) => {
 // CREATE A COURSE
 router.post('/', (req, res) => {
   
-  const {title, description} = req.body;  //GET THE DATA FROM THE BODY
-  const owner = req.user._id;
+  const {title, description, owner} = req.body;  //GET THE DATA FROM THE BODY
   Lesson.create({       //CREATE THE OBJECT
     title,
     description,

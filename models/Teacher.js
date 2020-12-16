@@ -9,17 +9,9 @@ const teacherSchema = new Schema({
   email: String,
   phone: String,
   socialNetwork: String,
-  role: {
-    type:String,
-    default:'teach'
-  },
   studentsList: [{
     type: Schema.ObjectId,
     ref: 'Student'
-  }],
-  lessons: [{
-    type: Schema.ObjectId,
-    ref: 'Lesson'
   }],
   responces: [{
     type: Schema.ObjectId,

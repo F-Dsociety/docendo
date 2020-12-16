@@ -4,9 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 import Navbar         from './components/Navbar';
 import Signup         from './components/Signup';
 import Login          from './components/Login';
-import Dashboard      from './components/dashboard';
+import Dashboard      from './components/dashboard/';
 import LessonDetails  from './components/LessonDetails';
-import LessonAdd      from './components/LessonAdd';
 import List           from './components/List';
 import AddLicense     from './components/AddLicense'
 
@@ -43,18 +42,13 @@ class App extends React.Component {
         />
         <Route
           exact
-          path='/current-courses/' 
+          path='/current-lessons/' 
           render={props => <List {...props} user={this.state.user}/>}
         />
         <Route
           exact
           path='/lesson/details/:id' 
-          render={props => <LessonDetails setUser={this.setUser} {...props}/>}
-        />
-        <Route
-          exact
-          path='/lesson/add-lesson' // cuando llame al path hace render
-          render={props => <LessonAdd setUser={this.setUser} {...props}/>}
+          render={props => <LessonDetails setUser={this.setUser} user={this.state.user} {...props}/>}
         />
         <Route
           exact

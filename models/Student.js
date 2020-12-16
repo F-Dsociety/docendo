@@ -9,10 +9,6 @@ const studentSchema = new Schema({
   email: String,
   phone: String,
   socialNetwork: String,
-  role: {
-    type:String,
-    default:'learn'
-  },
   teachersList: [{ 
     type: Schema.ObjectId, 
     ref: 'Teacher'
@@ -20,10 +16,6 @@ const studentSchema = new Schema({
   lessons: [{ 
     type: Schema.ObjectId, 
     ref: 'Lesson'
-  }],
-  interests: [{ 
-    type: Schema.ObjectId, 
-    ref: 'Interest'
   }]
 },
 {

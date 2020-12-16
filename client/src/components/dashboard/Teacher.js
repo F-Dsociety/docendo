@@ -1,9 +1,26 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom'
 import {Accordion,Card,Button} from 'react-bootstrap'
+import Lesson from './items/Lesson'
+import axios from 'axios'
+import LessonInput from './LessonInput'
+
 
 export default function Teacher({data}){
-  console.log(data);
+  let [lessons, setLessons] = useState([])
+  function getLessons(){
+    axios.get(`/api/lesson//byTeacher_id/${data._id}`)
+      .then(response => {
+        setLessons(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  useEffect(()=>{
+    getLessons()
+  },[])
+
   return(
     <div className="teacher-index-container">
       <h2>Hi {data.firstname}</h2>
@@ -39,16 +56,15 @@ export default function Teacher({data}){
         <Accordion.Collapse eventKey="1">
           <Card.Body>
           {
-            data.lessons.length
+            lessons.length
               ?
-              data.lessons.map(lesson=><div></div>)
+              lessons.map(lesson=><Lesson lesson={lesson} />)
               :
                 <div>No Lessons yet</div>
               
             
             }
-            <Link to={`/lesson/add-lesson`} {...data}>Create New Lesson</Link>
-
+            <LessonInput getLessons={getLessons} owner={data._id}/>
           </Card.Body>
         </Accordion.Collapse>
       </Card>

@@ -28,6 +28,22 @@ router.post('/teachers_list', (req, res) => {
   
 })
 
+router.post('/interests_list', (req, res) => {
+  if(req.user){
+    Interest
+    .find({owner:req.body.id})
+    .populate('owner')
+    .exec()
+    .then(interests => {
+      res.json(interests)
+    })
+    .catch(err => {
+      res.json(err);
+    })
+  }
+  
+})
+
 router.put('/interests', (req, res) => {
   if(req.user){
     Interest

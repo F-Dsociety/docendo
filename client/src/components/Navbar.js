@@ -24,7 +24,7 @@ export default function Navbar(props) {
       </Nav.Brand>
 
       <Nav.Brand>
-          <Link to='/current-courses'>Our Courses</Link>
+          <Link to='/current-lessons'>Our Lessons</Link>
       </Nav.Brand>
 
       {props.user ? (
