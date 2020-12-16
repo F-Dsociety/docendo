@@ -29,12 +29,14 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   
   const {title, description} = req.body;  //GET THE DATA FROM THE BODY
- 
+  const owner = req.user._id;
   Lesson.create({       //CREATE THE OBJECT
     title,
-    description
+    description,
+    owner
   })
   .then( course => {    //SEND IT TO DB
+    
     res.status(201).json( course )  // STATUS(201) = CREATED
   })
   .catch( err => {
