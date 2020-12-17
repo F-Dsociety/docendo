@@ -3,8 +3,8 @@
 } */
 
 :root {
-  --a: #7C9DA3;
-  --b: #7C9DA3;
+  --a: #7C9D00;
+  --b: #7C9DFF;
   --c: #F0EACE;
   --d: #9E7CA3;
   --e: #EAB6F2;
@@ -14,7 +14,7 @@ body {
   margin: 0;
   font-family:DejaVu Sans Mono, monospace;
 
-  background-color: var(--a);
+  background-color: var(--b);
   color: 
 
 }
@@ -57,12 +57,11 @@ h1{
 .App .auth-container{
   text-align: center;
   justify-content: center;
-  width: 5%;
+  width: 60%;
 }
 
 .App input{
   align-items: center;
-  width: 50%;
 }
 
 .current-courses-container {
