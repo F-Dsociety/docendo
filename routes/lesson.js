@@ -2,6 +2,8 @@ const express = require('express');
 const { populate } = require('../models/Lesson');
 const router  = express.Router();
 const Lesson =  require('../models/Lesson')
+const Teacher = require('../models/Teacher');
+const Student = require('../models/Student');
 
 
 // RETRIEVE ALL
@@ -82,6 +84,40 @@ router.delete('/:id', (req, res, next) => {
     .catch(err => {
       res.json(err);
     })
+});
+
+router.post('/book', (req, res) => {
+let student_id = req.body.user.learn._id
+let lesson_id = req.body.lesson._id
+let teacher_id = req.body.lesson.owner._id
+let {date,comments} = req.body.details;
+
+  Student.findByIdAndUpdate(student_id,{
+    $push:{
+      lessons:{lesson:lesson_id,date,comments},
+      teachersList: teacher_id
+    }
+  })
+    .then(student => {
+      res.status(200).json({ message: 'ok' })
+    })
+    .catch(err => {
+      res.json(err);
+    })
+
+  Teacher.findByIdAndUpdate(teacher_id,{
+    $push:{
+      studentsList: student_id
+    }
+  })
+    .then(student => {
+      res.status(200).json({ message: 'ok' })
+    })
+    .catch(err => {
+      res.json(err);
+    })
+    
+  
 });
 
 module.exports = router;

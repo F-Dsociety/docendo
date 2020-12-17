@@ -1,14 +1,14 @@
 //- send proper user after sign up, now it sends just result of succefull create
 
-- create all add lesson/request/teacher/respond routes
+//- create all add lesson/request/teacher/respond routes
 //- add request and window for adding learn/teach account if user do not have
 
 
 
 -when user book lesson:
-1. push to student's lesson list
-2. push teacher to student's teachers list
-3. push student to teacher's student list
+//1. push to student's lesson list
+//2. push teacher to student's teachers list
+//3. push student to teacher's student list
 
 
 -when teacher respond request
