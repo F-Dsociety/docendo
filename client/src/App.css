@@ -1,6 +1,24 @@
-body{
+/* body{
   font-family: Consolas;
+} */
+
+:root {
+  --a: #7C9DA3;
+  --b: #7C9DA3;
+  --c: #F0EACE;
+  --d: #9E7CA3;
+  --e: #EAB6F2;
 }
+
+body {
+  margin: 0;
+  font-family:DejaVu Sans Mono, monospace;
+
+  background-color: var(--a);
+  color: 
+
+}
+
 
 .App {
   text-align: center;
@@ -9,7 +27,7 @@ body{
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #c6d3ec;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,6 +53,18 @@ body{
 h1{
   margin: 30px;
 }
+
+.App .auth-container{
+  text-align: center;
+  justify-content: center;
+  width: 5%;
+}
+
+.App input{
+  align-items: center;
+  width: 50%;
+}
+
 .current-courses-container {
   border: 1px solid rgb(0, 255, 0);
   display: flex;

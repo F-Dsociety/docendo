@@ -8,8 +8,9 @@ import LessonInput from './LessonInput'
 
 export default function Teacher({data}){
   let [lessons, setLessons] = useState([])
+  
   function getLessons(){
-    axios.get(`/api/lesson//byTeacher_id/${data._id}`)
+    axios.get(`/api/lesson/byTeacher_id/${data._id}`)
       .then(response => {
         setLessons(response.data)
       })

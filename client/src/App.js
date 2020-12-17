@@ -27,6 +27,16 @@ class App extends React.Component {
 
         <Navbar user={this.state.user} setUser={this.setUser} />
 
+        <div>
+            <h1 style={{fontSize:'8em', 
+                        textAlign:'left', 
+                        // fontStyle:'oblique',
+                        lineHeight:'.8em'} }
+            >
+              Docendo Discimus
+            </h1>
+        </div>
+
         <Route
           exact
           path='/dashboard'

@@ -15,16 +15,13 @@ export default function Navbar(props) {
   console.log(props);
   return (
     <Nav className='nav justify-content-end' bg='primary'>
-      <Nav.Brand>
-        Hi
-      </Nav.Brand>
 
       <Nav.Brand>
         <Link to='/'>Home</Link>
       </Nav.Brand>
 
       <Nav.Brand>
-          <Link to='/current-lessons'>Our Lessons</Link>
+          <Link to='/current-lessons'>Guide Lessons</Link>
       </Nav.Brand>
 
       {props.user ? (
