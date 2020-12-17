@@ -13,9 +13,13 @@ const studentSchema = new Schema({
     type: Schema.ObjectId, 
     ref: 'Teacher'
   }],
-  lessons: [{ 
-    type: Schema.ObjectId, 
-    ref: 'Lesson'
+  lessons: [{
+    lesson:{ 
+      type: Schema.ObjectId, 
+      ref: 'Lesson'
+    },
+    date: String,
+    comments: String
   }]
 },
 {

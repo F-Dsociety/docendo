@@ -2,25 +2,25 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import LessonEdit from './LessonEdit';
-import LessonSchedule from './LessonSchedule';
+import ScheduleIt from './ScheduleIt';
 
 export default class LessonDetails extends Component {
-
+  
   state = {
-    project: null,
+    lesson: null,
     editForm: false,
     error: null,
-    schedule:''
+    showScheduleItForm: false,
+    id: this.props.match.params.id
   }
 
   getData = () => {
-    const id = this.props.match.params.id;
     // get the project that was clicked from the server
-    axios.get(`/api/lesson/${id}`)
+    axios.get(`/api/lesson/${this.state.id}`)
       .then(response => {
         console.log(response);
         this.setState({
-          project: response.data
+          lesson: response.data
         })
       })
       .catch(err => {
@@ -38,8 +38,8 @@ export default class LessonDetails extends Component {
   }
   deleteProject = () => {
     // delete this project from the database
-    const id = this.props.match.params.id;
-    axios.delete(`/api/lesson/${id}`)
+    
+    axios.delete(`/api/lesson/${this.state.id}`)
       .then(() => {
         // this is how you do a redirect with react router dom
         this.props.history.push('/current-lessons/');
@@ -51,10 +51,9 @@ export default class LessonDetails extends Component {
       editForm: !prevState.editForm
     }))
   }
-  toggleSchedule = () => {
-    this.setState((prevState) => ({
-      schedule: !prevState.schedule
-    }))
+
+  toggleScheduleFrom = ()=>{
+    this.setState({showScheduleItForm: !this.state.showScheduleItForm})
   }
 
   handleChange = event => {
@@ -85,13 +84,13 @@ export default class LessonDetails extends Component {
   }
 
   render() {
-    if (this.state.error)     return <h1>{this.state.error}</h1>
-    if (!this.state.project)  return <h1>Loading...</h1>
+    if (this.state.error) return <h1>{this.state.error}</h1>
+    if (!this.state.lesson) return <h1>Loading...</h1>
 
     let allowedToModify = false;
 
     const user = this.props.user;
-    const {title, description, owner} = this.state.project;
+    const { title, description, owner } = this.state.lesson;
 
     if(user.teach){
       if(user && user.teach._id === owner._id) allowedToModify = true;
@@ -103,39 +102,41 @@ export default class LessonDetails extends Component {
     console.log(user,owner)
     
     return (
-      <div className= "lesson-details-container">
-          
+      <div className="lesson-details-container">
+
         <div>
           <h2>{title}</h2>
           <h5>{owner.firstname} profile link</h5>
           <p>{description}</p>
         </div>
-        {allowedToModify && (
+        {
+          allowedToModify
+            && 
           <div>
-          <Button variant='danger' onClick={this.deleteProject}>Delete</Button>
-          <Button onClick={this.toggleEditForm}>Edit</Button>
+            <Button variant='danger' onClick={this.deleteProject}>Delete</Button>
+            <Button onClick={this.toggleEditForm}>Edit</Button>
             {this.state.editForm && (
-            <LessonEdit
-              {...this.state}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-            />
-          )}
-          
+              <LessonEdit
+                {...this.state}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            )}
+
           </div>
-        )}
+        }
 
         {!allowedToModify && (
           <div>
-          <Button onClick={this.toggleSchedule}>Schedule it</Button>
-            {this.state.editForm && (
-            <LessonSchedule
-               {...this.state}
-              // handleChange={this.handleChange}
-              // handleSubmit={this.handleSubmit}
-            />
-          )}
-          
+            
+            {
+              this.state.showScheduleItForm
+              ?
+              <ScheduleIt user={this.props.user} lesson={this.state.lesson} cancel={this.toggleScheduleFrom}  />
+              :
+              <Button onClick={this.toggleScheduleFrom}>Schedule it</Button>
+            }
+
           </div>
         )}
 
