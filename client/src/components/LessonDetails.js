@@ -92,9 +92,15 @@ export default class LessonDetails extends Component {
     const user = this.props.user;
     const { title, description, owner } = this.state.lesson;
 
-    if (user && user.teach._id === owner._id) allowedToModify = true;
-    console.log(user, owner)
+    if(user.teach){
+      if(user && user.teach._id === owner._id) allowedToModify = true;
+    }
+    else{
+      allowedToModify = false;
+    }
 
+    console.log(user,owner)
+    
     return (
       <div className="lesson-details-container">
 

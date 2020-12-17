@@ -15,7 +15,7 @@ export default function Dashboard({user}){
         <Modal show={show} onHide={()=>setShow(false)}>
           <Modal.Header closeButton>
 
-            <Modal.Title>Hi {user.firstname} What would you like to do today</Modal.Title>
+            <Modal.Title>Hi {user._id} What would you like to do today</Modal.Title>
 
           </Modal.Header>
           <Modal.Footer className='d-flex justify-content-around'>
@@ -45,21 +45,15 @@ export default function Dashboard({user}){
         &&
           <>
             {
-              license==='teach'
-              ?
-                user.teach
-                  ?
-                <Teacher data={user.teach} />
-                :
-                <Redirect to="/addlicense/teach" />
+              license==='teach'?
+
+                user.teach?
+                <Teacher data={user.teach} /> : <Redirect to="/addlicense/teach" />
 
               :
-                user.learn
-                  ?
-                <Student data={user.learn} />
-                :
-                <Redirect to="/addlicense/learn" />
-                
+                user.learn ?
+                <Student data={user.learn} /> : <Redirect to="/addlicense/learn" />
+
             }
 
           </>
