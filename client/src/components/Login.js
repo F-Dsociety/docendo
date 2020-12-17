@@ -40,7 +40,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <>
+      <div className="auth-container">
         <h2>Login</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
@@ -68,7 +68,7 @@ export default class Login extends Component {
           )}
           <Button type='submit'>Login</Button>
         </Form>
-      </>
+      </div>
     );
   }
 }

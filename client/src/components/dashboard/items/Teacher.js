@@ -7,7 +7,7 @@ export default function Teacher({teacher:{firstname,lastname, _id}}){
   let [show, setShow] = useState(false)
   let [lessons, setLessons] = useState([])
   useEffect(()=>{
-    axios.get(`/api/lesson//byTeacher_id/${_id}`)
+    axios.get(`/api/lesson/byTeacher_id/${_id}`)
       .then(response => {
         setLessons(response.data)
       })
@@ -18,7 +18,7 @@ export default function Teacher({teacher:{firstname,lastname, _id}}){
   return(
     <Row>
       <Button onClick={() => setShow(true)}>
-        {firstname} {lastname.substr(0,1)}. available lessons: {lessons.length}
+        {firstname} {lastname}. available lessons: {lessons.length}
       </Button>
 
       <Modal
@@ -28,7 +28,7 @@ export default function Teacher({teacher:{firstname,lastname, _id}}){
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">
-          {firstname} {lastname.substr(0,1)}. available lessons: {lessons.length}
+          {firstname} {lastname}. available lessons: {lessons.length}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
