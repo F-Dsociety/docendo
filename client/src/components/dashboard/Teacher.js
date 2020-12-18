@@ -42,25 +42,24 @@ export default function Teacher({data}){
     <div className="teacher-index-container">
       <h2>Hi {data.firstname}</h2>
 
-      <Accordion defaultActiveKey="1">
+      <Accordion defaultActiveKey="0">
 
       <Card>
         <Card.Header>
-
-          <Accordion.Toggle as={Button} variant="link" eventKey="1">
+          <Accordion.Toggle as={Button} variant="link" eventKey="0">
             Your students
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="1">
 
-          <Card.Body>
+        <Accordion.Collapse eventKey="0">
+
+          <Card.Body class="card-body">
             {
               data.studentsList.length
               ?
               data.studentsList.map(student=><div></div>)
               :
-              <div>no students yet</div>
-            
+              <div>no students yet</div>            
             }
           </Card.Body>
 
@@ -80,7 +79,7 @@ export default function Teacher({data}){
               ?
               lessons.map(lesson=><Lesson lesson={lesson} />)
               :
-                <div>No Lessons yet</div>
+                <div>No lessons yet</div>
               
             
             }
@@ -91,18 +90,18 @@ export default function Teacher({data}){
 
       <Card>
         <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey="1">
+          <Accordion.Toggle as={Button} variant="link" eventKey="2">
             Your responses
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="1">
+        <Accordion.Collapse eventKey="2">
           <Card.Body>
           {
             data.responces.length
               ?
               data.responces.map(responce=><div></div>)
               :
-              <div>no responces yet</div>
+              <div>no responses yet</div>
             
             }
           </Card.Body>

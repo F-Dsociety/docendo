@@ -8,6 +8,11 @@ export default function Dashboard({user}){
   const [show,setShow] = useState(true)
   const [license, setLicense] = useState(null)
 
+  const name = () => {
+    if(user.teach) return user.teach.firstname
+    else return user.learn.firstname
+  }
+
   console.log(user);
 
     return (
@@ -15,7 +20,7 @@ export default function Dashboard({user}){
         <Modal show={show} onHide={()=>setShow(false)}>
           <Modal.Header>
 
-            <Modal.Title>Hi {user.teach.firstname}! What would you like to do today</Modal.Title>
+            <Modal.Title>Hi {name} ! What would you like to do today</Modal.Title>
 
           </Modal.Header>
           

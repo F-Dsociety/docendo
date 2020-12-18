@@ -30,6 +30,7 @@ export default function Student({ data }) {
       });
     getInterests()
   }, [])
+  
   return (
     <Accordion defaultActiveKey="0">
       <Card>

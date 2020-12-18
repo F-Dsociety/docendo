@@ -105,8 +105,8 @@ export default class LessonDetails extends Component {
       <div className="lesson-details-container">
 
         <div>
-          <h2>{title}</h2>
-          <h5>{owner.firstname} profile link</h5>
+          <h1>{title}</h1>
+          <h3>by {owner.firstname}</h3>
           <p>{description}</p>
         </div>
         {
@@ -114,7 +114,7 @@ export default class LessonDetails extends Component {
             && 
           <div>
             <Button variant='danger' onClick={this.deleteProject}>Delete</Button>
-            <Button onClick={this.toggleEditForm}>Edit</Button>
+            <Button variant='info' onClick={this.toggleEditForm}>Edit</Button>
             {this.state.editForm && (
               <LessonEdit
                 {...this.state}
@@ -134,7 +134,7 @@ export default class LessonDetails extends Component {
               ?
               <ScheduleIt user={this.props.user} lesson={this.state.lesson} cancel={this.toggleScheduleFrom}  />
               :
-              <Button onClick={this.toggleScheduleFrom}>Schedule it</Button>
+              <Button variant="light" onClick={this.toggleScheduleFrom}>Schedule it</Button>
             }
 
           </div>
