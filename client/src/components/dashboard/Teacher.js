@@ -8,7 +8,23 @@ import LessonInput from './LessonInput'
 
 export default function Teacher({data}){
   let [lessons, setLessons] = useState([])
+  let [response, setResponse] = useState([])
+
+  console.log(data);
   
+  function getLessons(){
+    axios.get(`/api/lesson/byTeacher_id/${data._id}`)
+      .then(response => {
+        setLessons(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  useEffect(()=>{
+    getLessons()
+  },[])
+
   function getLessons(){
     axios.get(`/api/lesson/byTeacher_id/${data._id}`)
       .then(response => {
@@ -25,14 +41,17 @@ export default function Teacher({data}){
   return(
     <div className="teacher-index-container">
       <h2>Hi {data.firstname}</h2>
-      <Accordion defaultActiveKey="0">
+
+      <Accordion defaultActiveKey="1">
+
       <Card>
         <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            Students list
+
+          <Accordion.Toggle as={Button} variant="link" eventKey="1">
+            Your students
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="0">
+        <Accordion.Collapse eventKey="1">
 
           <Card.Body>
             {
@@ -51,7 +70,7 @@ export default function Teacher({data}){
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="1">
-            Lessons list
+            Your lessons
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="1">
@@ -73,7 +92,7 @@ export default function Teacher({data}){
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="2">
-            Responces list
+            Your responses
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="2">

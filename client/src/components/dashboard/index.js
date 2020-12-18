@@ -8,19 +8,20 @@ export default function Dashboard({user}){
   const [show,setShow] = useState(true)
   const [license, setLicense] = useState(null)
 
-  console.log(user)
+  console.log(user);
 
     return (
       <div className='projects-container'>
         <Modal show={show} onHide={()=>setShow(false)}>
-          <Modal.Header closeButton>
+          <Modal.Header>
 
-            <Modal.Title>Hi {user._id} What would you like to do today</Modal.Title>
+            <Modal.Title>Hi {user.teach.firstname}! What would you like to do today</Modal.Title>
 
           </Modal.Header>
+          
           <Modal.Footer className='d-flex justify-content-around'>
             <Button 
-              variant="primary" 
+              variant="info" 
               onClick={()=>{
                 setLicense('teach')
                 setShow(false)
@@ -30,7 +31,7 @@ export default function Dashboard({user}){
             </Button>
 
             <Button 
-              variant="success" 
+              variant="primary" 
               onClick={()=>{
                 setLicense('learn')
                 setShow(false)
@@ -49,7 +50,6 @@ export default function Dashboard({user}){
 
                 user.teach?
                 <Teacher data={user.teach} /> : <Redirect to="/addlicense/teach" />
-
               :
                 user.learn ?
                 <Student data={user.learn} /> : <Redirect to="/addlicense/learn" />

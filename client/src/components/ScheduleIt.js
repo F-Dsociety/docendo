@@ -41,7 +41,7 @@ export default class ScheduleIt extends Component {
               type='date'
               id='date'
               name='date'
-              value={this.state.details.title}
+              value={this.state.details.date}
               onChange={this.handleChange}
             />
           </Form.Group>

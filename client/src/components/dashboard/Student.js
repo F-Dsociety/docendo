@@ -35,7 +35,7 @@ export default function Student({ data }) {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            My teachers list
+            My teachers
         </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="0">
@@ -59,7 +59,7 @@ export default function Student({ data }) {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="1">
-            Lessons list
+            My lessons
         </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="1">
