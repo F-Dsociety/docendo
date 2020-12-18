@@ -4,6 +4,7 @@ import {Accordion,Card,Button} from 'react-bootstrap'
 import Lesson from './items/Lesson'
 import axios from 'axios'
 import LessonInput from './LessonInput'
+import Student from './items/Student';
 
 
 export default function Teacher({data}){
@@ -57,7 +58,7 @@ export default function Teacher({data}){
             {
               data.studentsList.length
               ?
-              data.studentsList.map(student=><div></div>)
+              Array.from(new Set(data.studentsList)).map(student=><Student lessons={lessons.map(les=>les._id)} id={student} teacher_id={data._id} />)
               :
               <div>no students yet</div>            
             }

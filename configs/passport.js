@@ -11,6 +11,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   User.findById(id)
   .populate('teach')
+  .populate('teach.studentsList')
   .populate('learn')
   .exec()
     .then(dbUser => {
@@ -25,6 +26,7 @@ passport.use(
   new LocalStrategy((username, password, done) => {
     User.findOne({ username: username })
     .populate('teach')
+    .populate('teach.studentsList')
     .populate('learn')
     .exec()
       .then(found => {

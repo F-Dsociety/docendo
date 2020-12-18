@@ -42,6 +42,20 @@ router.post('/interests_list', (req, res) => {
   
 })
 
+router.post('/student/:id', (req, res) => {
+  if(req.user){
+    Student
+    .findById(req.params.id)
+    .then(student => {
+      res.json(student)
+    })
+    .catch(err => {
+      res.json(err);
+    })
+  }
+  
+})
+
 router.put('/interests', (req, res) => {
   if(req.user){
     Interest
