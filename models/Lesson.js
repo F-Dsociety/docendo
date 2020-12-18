@@ -9,7 +9,7 @@ const lessonSchema = new Schema({
     ref: 'Teacher'
   },
   materials: [Buffer],
-  dates: ''
+  dates: String
    //chat or webinar schedule
 },
   {
