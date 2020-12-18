@@ -44,20 +44,22 @@ export default class Login extends Component {
         <h2>Login</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor='username'>Username: </Form.Label>
+            <Form.Label htmlFor='username'></Form.Label>
             <Form.Control
               type='text'
               name='username'
+              placeholder='username'
               value={this.state.username}
               onChange={this.handleChange}
               id='username'
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor='password'>Password: </Form.Label>
+            <Form.Label htmlFor='password'></Form.Label>
             <Form.Control
               type='password'
               name='password'
+              placeholder='password'
               value={this.state.password}
               onChange={this.handleChange}
               id='password'
@@ -66,7 +68,7 @@ export default class Login extends Component {
           {this.state.message && (
             <Alert variant='danger'>{this.state.message}</Alert>
           )}
-          <Button type='submit'>Login</Button>
+          <Button variant='info' type='submit'>Login</Button>
         </Form>
       </div>
     );

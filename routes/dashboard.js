@@ -4,8 +4,6 @@ const User = require('../models/User');
 const Teacher = require('../models/Teacher');
 const Student = require('../models/Student');
 const Interest = require('../models/Interest');
-const bcrypt = require('bcrypt');
-const passport = require('passport');
 
 
 // router.delete('/logout', (req, res) => {
