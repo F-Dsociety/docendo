@@ -27,7 +27,7 @@ export default class LessonEdit extends Component {
               onChange={this.props.handleChange}
             />
           </Form.Group>
-          <Button type='submit'>Update Project</Button>
+          <Button variant='info' type='submit'>Update Project</Button>
         </Form>
       </div>
     )

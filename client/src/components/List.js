@@ -14,10 +14,10 @@ export default class List extends Component {
     //const id = this.props.match.params.id;
 
     axios.get(`/api/lesson`)
-      .then(response => {
-        console.log(response);
+      .then(res => {
+        console.log(res);
         this.setState({
-          lessons: response.data
+          lessons: res.data
         })
       })
       .catch(err => {
@@ -39,14 +39,15 @@ export default class List extends Component {
 
     return (
       <div>
-        <h1>Current Lessons</h1>
+        <h1>Explore Lessons</h1>
         <div className="current-courses-container">
           {this.state.lessons.map(element => {
             return (
               <div key={element._id} className="course-container">
                 <h3>
                   <Link to={`/lesson/details/${element._id}`}>{element.title}</Link>
-                </h3>
+                </h3>                
+                {/* <h5>by {this.lessons.firstname}</h5> */}
                 <p>{element.description}</p>
                 {/* <Button onClick={`/lesson/details/${project._id}`}>More Info</Button> */}
               </div>

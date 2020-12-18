@@ -25,16 +25,19 @@ class App extends React.Component {
     return (
       <div className="App" >
 
-        <Navbar user={this.state.user} setUser={this.setUser} />
+        <Navbar user={this.state.user} setUser={this.setUser} className="nav-bar"/>
 
-        <div>
-            <h1 style={{fontSize:'8em', 
-                        textAlign:'left', 
-                        // fontStyle:'oblique',
-                        lineHeight:'.8em'} }
-            >
-              Docendo Discimus
-            </h1>
+        <div className="Body">
+
+          <div className="docendo-title">
+              <h1>Docendo</h1>
+          </div>
+
+
+          <div>
+              {/* auth component */}
+          </div>
+
         </div>
 
         <Route

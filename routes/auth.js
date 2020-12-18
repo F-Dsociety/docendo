@@ -44,6 +44,7 @@ router.post('/signup', (req, res, next) => {
               // console.log(user)
               User.findById(user._id)
               .populate('teach')
+              .populate('studentsList')
               .populate('learn')
               .exec()
                 .then(dbUser => {

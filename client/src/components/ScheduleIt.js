@@ -20,11 +20,8 @@ export default class ScheduleIt extends Component {
   }
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.props)
     axios.post(`/api/lesson/book`, {details: this.state.details, lesson: this.props.lesson, user:this.props.user})
       .then(response => {
-        console.log(response);
-        
         alert('lesson is booked')
         this.props.cancel()
       })
@@ -44,7 +41,7 @@ export default class ScheduleIt extends Component {
               type='date'
               id='date'
               name='date'
-              value={this.state.details.title}
+              value={this.state.details.date}
               onChange={this.handleChange}
             />
           </Form.Group>

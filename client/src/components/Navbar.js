@@ -5,7 +5,6 @@ import { logout } from '../services/auth';
 
 
 const handleLogout = props => {
-  console.log(props);
   logout().then(() => {
     props.setUser(null);
   })
@@ -14,14 +13,14 @@ const handleLogout = props => {
 export default function Navbar(props) {
   console.log(props);
   return (
-    <Nav className='nav justify-content-end' bg='primary'>
+    <nav className='nav justify-content-end' bg='primary'>
 
       <Nav.Brand>
         <Link to='/'>Home</Link>
       </Nav.Brand>
 
       <Nav.Brand>
-          <Link to='/current-lessons'>Guide Lessons</Link>
+          <Link to='/current-lessons'>Explore Lessons</Link>
       </Nav.Brand>
 
       {props.user ? (
@@ -44,6 +43,6 @@ export default function Navbar(props) {
             </Nav.Brand>
           </>
         )}
-    </Nav>
+    </nav>
   )
 }

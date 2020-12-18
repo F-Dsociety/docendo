@@ -5,7 +5,7 @@ import Teacher from './items/Teacher'
 import Interest from './items/Interest'
 import InterestInput from './InterestInput'
 
-export default function Student({ data }) {
+export default function Student({ data={} }) {
   let [teachers, setTeachers] = useState([])
   let [interests, setInterests] = useState([])
 
@@ -30,12 +30,13 @@ export default function Student({ data }) {
       });
     getInterests()
   }, [])
+  
   return (
     <Accordion defaultActiveKey="0">
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            My teachers list
+            My teachers
         </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="0">
@@ -44,7 +45,7 @@ export default function Student({ data }) {
             <Container>
 
               {
-                data.teachersList.length
+                data.teachersList?.length
                   ?
                   data.teachersList.map(teacher => <div></div>)
                   :
@@ -59,13 +60,13 @@ export default function Student({ data }) {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="1">
-            Lessons list
+            My lessons
         </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="1">
           <Card.Body>
             {
-              data.lessons.length
+              data.lessons?.length
                 ?
                 data.lessons.map(lesson => <div></div>)
                 :

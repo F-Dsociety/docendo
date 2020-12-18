@@ -4,8 +4,6 @@ const User = require('../models/User');
 const Teacher = require('../models/Teacher');
 const Student = require('../models/Student');
 const Interest = require('../models/Interest');
-const bcrypt = require('bcrypt');
-const passport = require('passport');
 
 
 // router.delete('/logout', (req, res) => {
@@ -36,6 +34,20 @@ router.post('/interests_list', (req, res) => {
     .exec()
     .then(interests => {
       res.json(interests)
+    })
+    .catch(err => {
+      res.json(err);
+    })
+  }
+  
+})
+
+router.post('/student/:id', (req, res) => {
+  if(req.user){
+    Student
+    .findById(req.params.id)
+    .then(student => {
+      res.json(student)
     })
     .catch(err => {
       res.json(err);

@@ -4,11 +4,28 @@ import {Accordion,Card,Button} from 'react-bootstrap'
 import Lesson from './items/Lesson'
 import axios from 'axios'
 import LessonInput from './LessonInput'
+import Student from './items/Student';
 
 
 export default function Teacher({data}){
   let [lessons, setLessons] = useState([])
+  let [response, setResponse] = useState([])
+
+  console.log(data);
   
+  function getLessons(){
+    axios.get(`/api/lesson/byTeacher_id/${data._id}`)
+      .then(response => {
+        setLessons(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  useEffect(()=>{
+    getLessons()
+  },[])
+
   function getLessons(){
     axios.get(`/api/lesson/byTeacher_id/${data._id}`)
       .then(response => {
@@ -25,23 +42,25 @@ export default function Teacher({data}){
   return(
     <div className="teacher-index-container">
       <h2>Hi {data.firstname}</h2>
+
       <Accordion defaultActiveKey="0">
+
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            Students list
+            Your students
           </Accordion.Toggle>
         </Card.Header>
+
         <Accordion.Collapse eventKey="0">
 
-          <Card.Body>
+          <Card.Body class="card-body">
             {
               data.studentsList.length
               ?
-              data.studentsList.map(student=><div></div>)
+              Array.from(new Set(data.studentsList)).map(student=><Student lessons={lessons.map(les=>les._id)} id={student} teacher_id={data._id} />)
               :
-              <div>no students yet</div>
-            
+              <div>no students yet</div>            
             }
           </Card.Body>
 
@@ -51,7 +70,7 @@ export default function Teacher({data}){
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="1">
-            Lessons list
+            Your lessons
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="1">
@@ -61,7 +80,7 @@ export default function Teacher({data}){
               ?
               lessons.map(lesson=><Lesson lesson={lesson} />)
               :
-                <div>No Lessons yet</div>
+                <div>No lessons yet</div>
               
             
             }
@@ -73,7 +92,7 @@ export default function Teacher({data}){
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="2">
-            Responces list
+            Your responses
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="2">
@@ -83,7 +102,7 @@ export default function Teacher({data}){
               ?
               data.responces.map(responce=><div></div>)
               :
-              <div>no responces yet</div>
+              <div>no responses yet</div>
             
             }
           </Card.Body>
