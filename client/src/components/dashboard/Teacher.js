@@ -91,11 +91,11 @@ export default function Teacher({data}){
 
       <Card>
         <Card.Header>
-          <Accordion.Toggle as={Button} variant="link" eventKey="2">
+          <Accordion.Toggle as={Button} variant="link" eventKey="1">
             Your responses
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="2">
+        <Accordion.Collapse eventKey="1">
           <Card.Body>
           {
             data.responces.length
